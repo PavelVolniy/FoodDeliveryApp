@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/background_app"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tv_food_category"
+        android:text="pizza"
+        android:textSize="13sp"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:gravity="center"
+        android:elevation="10dp"
+        android:background="@drawable/rectangle_disabled"
+       android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</FrameLayout>
