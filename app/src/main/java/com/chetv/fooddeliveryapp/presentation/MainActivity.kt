@@ -10,12 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chetv.fooddeliveryapp.R
-import com.chetv.fooddeliveryapp.adapters.BannersAdapter
-import com.chetv.fooddeliveryapp.adapters.CategoryFoodAdapter
-import com.chetv.fooddeliveryapp.adapters.FoodItemsAdapter
+import com.chetv.fooddeliveryapp.data.adapters.BannersAdapter
+import com.chetv.fooddeliveryapp.data.adapters.CategoryFoodAdapter
+import com.chetv.fooddeliveryapp.data.adapters.FoodItemsAdapter
 
 class MainActivity : AppCompatActivity() {
-    lateinit var viewModel: MainViewModel
+    lateinit var viewModelFoodItems: MainViewModel
+    lateinit var viewModelCategoryButtons: MainViewModel
     lateinit var foodItemsAdapter: FoodItemsAdapter
     lateinit var bannersAdapter: BannersAdapter
     lateinit var categoryFoodAdapter: CategoryFoodAdapter
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         initViews()
         initRecyclerView()
         loadData()
@@ -33,34 +33,53 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "В разработке", Toast.LENGTH_SHORT).show()
         }
 
+
     }
 
     private fun initRecyclerView() {
         val recyclerViewFoodItems = findViewById<RecyclerView>(R.id.rv_food_items)
         recyclerViewFoodItems.apply {
             layoutManager =
-                LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+                LinearLayoutManager(
+                    this@MainActivity,
+                    LinearLayoutManager.VERTICAL,
+                    false
+                )
             foodItemsAdapter = FoodItemsAdapter()
             adapter = foodItemsAdapter
         }
         val recyclerViewBannersAdapter = findViewById<RecyclerView>(R.id.rv_banners)
         recyclerViewBannersAdapter.apply {
             layoutManager =
-                LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+                LinearLayoutManager(
+                    this@MainActivity,
+                    LinearLayoutManager.HORIZONTAL,
+                    false
+                )
             bannersAdapter = BannersAdapter()
             adapter = bannersAdapter
         }
         val recyclerViewCategoryFoodAdapter = findViewById<RecyclerView>(R.id.rv_category_buttons)
         recyclerViewCategoryFoodAdapter.apply {
             layoutManager =
-                LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+                LinearLayoutManager(
+                    this@MainActivity,
+                    LinearLayoutManager.HORIZONTAL,
+                    false
+                )
             categoryFoodAdapter = CategoryFoodAdapter()
             adapter = categoryFoodAdapter
         }
         val spinner = findViewById<Spinner>(R.id.sp_name_city_delivery)
-        ArrayAdapter.createFromResource(this, R.array.city_names, android.R.layout.simple_spinner_item)
-            .also { adapter -> adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter}
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.city_names,
+            android.R.layout.simple_spinner_item
+        )
+            .also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner.adapter = adapter
+            }
     }
 
     private fun initViews() {
@@ -69,14 +88,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadData() {
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        viewModel.getJsonResultObserver().observe(this) {
+        viewModelFoodItems = ViewModelProvider(this)[MainViewModel::class.java]
+        viewModelFoodItems.getJsonResultObserver().observe(this) {
             if (it != null) {
-//                foodItemsAdapter.list = it.results.
-//                foodItemsAdapter.notifyDataSetChanged()
+                foodItemsAdapter.list = it
+                foodItemsAdapter.application = this.application
+                foodItemsAdapter.notifyDataSetChanged()
             }
         }
-//        viewModel.makeRequest()
+        viewModelFoodItems.makeRequest()
     }
 
 }
+

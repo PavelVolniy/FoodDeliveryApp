@@ -12,7 +12,7 @@ class RetrofitClient {
         private val interceptor =
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         private val clientOkhttp = OkHttpClient.Builder().addInterceptor(interceptor)
-        private val BASE_URL = "https://api.spoonacular.com"
+        private val BASE_URL = "https://gunter-food-api.herokuapp.com"
 
         fun getInstance(): Retrofit{
             if (retrofit== null){

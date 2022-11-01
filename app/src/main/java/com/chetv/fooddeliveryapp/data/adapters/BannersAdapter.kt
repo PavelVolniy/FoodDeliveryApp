@@ -1,4 +1,4 @@
-package com.chetv.fooddeliveryapp.adapters
+package com.chetv.fooddeliveryapp.data.adapters
 
 import android.view.LayoutInflater
 import android.view.View

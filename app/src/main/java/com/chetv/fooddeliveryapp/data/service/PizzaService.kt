@@ -1,12 +1,22 @@
 package com.chetv.fooddeliveryapp.data.service
 
-import com.chetv.fooddeliveryapp.data.json.DodoPizzaJson
+import com.chetv.fooddeliveryapp.data.json.JsonGunterFoodApi
 import io.reactivex.Observable
 import retrofit2.http.GET
-import retrofit2.http.Headers
 
 interface PizzaService {
-    @GET("recipes/complexSearch")
-    @Headers("Content-Type:application/json")
-    fun getFoodItems(): Observable<DodoPizzaJson>
+    @GET("pizza")
+    fun getPizzaItems(): Observable<JsonGunterFoodApi>
+
+    @GET("dessert")
+    fun getDessertItems(): Observable<JsonGunterFoodApi>
+
+    @GET("drinks")
+    fun getDrinksItems(): Observable<JsonGunterFoodApi>
+
+    @GET("salads")
+    fun getSaladsItems(): Observable<JsonGunterFoodApi>
+
+    @GET("pasta")
+    fun getPastaItems(): Observable<JsonGunterFoodApi>
 }

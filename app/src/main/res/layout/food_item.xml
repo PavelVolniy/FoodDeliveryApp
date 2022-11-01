@@ -1,57 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="10dp">
 
     <ImageView
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/iv_food_image"
         android:layout_width="135dp"
         android:layout_height="135dp"
-        android:src="@drawable/pizza1"
         android:padding="8dp"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            app:layout_constraintLeft_toRightOf="@+id/iv_food_image"
-            app:layout_constraintTop_toTopOf="@+id/iv_food_image"
-            android:id="@+id/tv_food_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="Название"
-            android:textSize="19sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tv_food_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@+id/iv_food_image"
+        app:layout_constraintTop_toTopOf="@+id/iv_food_image" />
 
-        <TextView
-            app:layout_constraintLeft_toRightOf="@+id/iv_food_image"
-            app:layout_constraintTop_toBottomOf="@+id/tv_food_name"
-            app:layout_constraintRight_toRightOf="parent"
-            android:id="@+id/tv_food_description"
-            android:gravity="left"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соус"
-            android:textSize="17sp"
-            android:textStyle="italic|normal" />
-        <TextView
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_food_description"
-            android:layout_marginRight="20dp"
-            android:gravity="center"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:id="@+id/tv_food_price"
-            android:text="от 250р"
-            android:background="@drawable/background_price"
-            android:textSize="16sp"
-            android:textColor="#FD3A69"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/tv_food_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textSize="17sp"
+        android:textStyle="italic|normal"
+        app:layout_constraintLeft_toRightOf="@+id/iv_food_image"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_food_name" />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/tv_food_components"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textStyle="italic|normal"
+        app:layout_constraintLeft_toRightOf="@+id/iv_food_image"
+        app:layout_constraintTop_toBottomOf="@+id/tv_food_description"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_food_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/background_price"
+        android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="#FD3A69"
+        android:textSize="16sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_food_components" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
